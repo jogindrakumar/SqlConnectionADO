@@ -17,15 +17,25 @@ namespace SqlConnectionADOweb
            
             using (SqlConnection con = new SqlConnection(CS))
             {
-                
-                SqlCommand cmd = new SqlCommand("Select * from tblProduct", con);
+
+                //SqlCommand cmd = new SqlCommand("Select * from tblProduct", con);
+                //con.Open();
+                //GridView1.DataSource = cmd.ExecuteReader();
+                //GridView1.DataBind();
+
+                //2nd way
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "Select * from tblProduct";
+                cmd.Connection= con;
                 con.Open();
                 GridView1.DataSource = cmd.ExecuteReader();
                 GridView1.DataBind();
-               
+
+
+
             }
 
-            
+
 
         }
     }
