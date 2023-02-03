@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
 
 namespace SqlConnectionADOweb
 {
@@ -12,9 +13,11 @@ namespace SqlConnectionADOweb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string CS = "data source=VERONICA; database=Sample; integrated security=SSPI";
+            string CS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+           
             using (SqlConnection con = new SqlConnection(CS))
             {
+                
                 SqlCommand cmd = new SqlCommand("Select * from tblProduct", con);
                 con.Open();
                 GridView1.DataSource = cmd.ExecuteReader();
